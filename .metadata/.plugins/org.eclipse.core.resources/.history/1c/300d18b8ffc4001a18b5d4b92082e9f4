@@ -1,0 +1,9 @@
+package io.microservice.diagnosis.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import io.microservice.model.Diagnosis;
+
+public interface DiagnosisDao extends JpaRepository<Diagnosis,Integer> {
+
+}

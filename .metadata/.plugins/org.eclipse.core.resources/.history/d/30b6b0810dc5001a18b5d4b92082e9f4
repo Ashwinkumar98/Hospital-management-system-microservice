@@ -1,0 +1,17 @@
+package io.microservice.constultation.dto;
+
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ConsultationDto implements Serializable {
+	
+	private static final long serialVersionUID = 6784467401439494420L;
+	
+	private int patientPhno;
+	private int doctorPhno;
+	private int diagnosisId;
+}

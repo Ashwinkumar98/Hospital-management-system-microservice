@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: doctor-service
+  cache:
+    cache-names:
+    - patientCache
+    - doctorCache
+    - diagnosisCache
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - refresh

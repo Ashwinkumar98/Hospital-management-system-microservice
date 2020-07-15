@@ -1,0 +1,6 @@
+package io.microservice.one;
+
+@REst
+public class Controller {
+
+}

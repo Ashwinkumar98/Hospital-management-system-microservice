@@ -1,0 +1,5 @@
+package io.microservice.doctor.controller;
+
+public class DoctorController {
+
+}

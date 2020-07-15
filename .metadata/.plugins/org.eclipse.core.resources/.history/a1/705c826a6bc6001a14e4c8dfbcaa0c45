@@ -1,0 +1,5 @@
+package io.microservice.constultation.config;
+
+public class EhCacheConfig {
+
+}

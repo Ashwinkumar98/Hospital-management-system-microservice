@@ -1,0 +1,26 @@
+package io.microservice.constultation.client;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import io.microservice.constultation.model.Patient;
+
+@Service
+public class PatientServiceClient {
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@HystrixCommand(fallbackMethod = "getFallbackPatient")
+	public Patient getPatientDetails(String phno) {
+		return restTemplate.getForObject("http://PATIENT-SERVICE/patient/"+phno, Patient.class);
+	}
+	
+	public Patient getFallbackPatient(String phno) {
+		return null;
+	}
+	
+}

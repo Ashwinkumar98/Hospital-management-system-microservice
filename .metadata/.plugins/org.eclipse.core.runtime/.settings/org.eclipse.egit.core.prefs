@@ -1,0 +1,4 @@
+GitRepositoriesView.GitDirectories=G\:\\spring-samples\\.git;G\:\\microservice\\microservice-properties\\.git;C\:\\Users\\rpasw\\Desktop\\Spring\\properties\\.git;G\:\\gs-circuit-breaker\\.git;G\:\\spring-cloud\\.git;
+GitRepositoriesView.GitDirectories.relative=G\:\\spring-samples\\.git;microservice-properties\\.git;C\:\\Users\\rpasw\\Desktop\\Spring\\properties\\.git;G\:\\gs-circuit-breaker\\.git;G\:\\spring-cloud\\.git;
+core_autoIgnoreDerivedResources=false
+eclipse.preferences.version=1

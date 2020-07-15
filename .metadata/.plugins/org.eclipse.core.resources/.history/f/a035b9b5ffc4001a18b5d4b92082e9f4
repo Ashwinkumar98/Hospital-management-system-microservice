@@ -1,0 +1,5 @@
+package io.microservice.diagnosis.repo;
+
+public interface DiagnosisDao {
+
+}

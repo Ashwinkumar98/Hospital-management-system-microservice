@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: patient-service
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - refresh
+        
+info:
+  app:
+    name: patient service
+    description: This service handles all patient information
+    version: 1.0
+    java:
+      version: 1.9
+    spring:
+      cloud:
+        version: Hoxton.SR6

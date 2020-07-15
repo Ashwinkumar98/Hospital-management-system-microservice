@@ -1,0 +1,43 @@
+package io.microservice.patient.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.microservice.patient.model.Patient;
+import io.microservice.patient.service.PatientService;
+
+@RestController
+@RequestMapping("/patient")
+public class PatientController {
+	
+	@Autowired
+	private PatientService service;
+	
+	
+	@PostMapping
+	public ResponseEntity<Patient> addPatient(@RequestBody Patient patient){
+		return new ResponseEntity<Patient>(service.addPatient(patient).get(),HttpStatus.OK);
+	}
+	
+	@GetMapping("/{phno}")
+	public ResponseEntity<Patient> getPatient(@PathVariable(name = "phno",required = true) String phno){
+		Patient p=null;
+		if(service.getPatient(phno).isPresent())
+			p=service.getPatient(phno).get();
+		return new ResponseEntity<Patient>(p, HttpStatus.OK);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Patient>> getAllPatient(){
+		return new ResponseEntity<List<Patient>>(service.getAllPatient(), HttpStatus.OK);
+	}
+}

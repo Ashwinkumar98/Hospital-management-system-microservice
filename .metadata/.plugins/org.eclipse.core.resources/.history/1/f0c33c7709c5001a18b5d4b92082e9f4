@@ -1,0 +1,40 @@
+package io.microservice.constultation.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import io.microservice.constultation.model.Consultation;
+import io.microservice.constultation.model.Doctor;
+import io.microservice.constultation.model.Patient;
+import io.microservice.constultation.repo.ConsultationDao;
+
+@Service
+public class ConsultationServiceImp implements ConsultationService{
+	
+	@Autowired
+	private ConsultationDao dao;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Override
+	public Optional<Consultation> addConsultation(Consultation cons) {
+		Patient patient = restTemplate.getForObject("http://localhost:8081/patient"+cons.getPatient(), Patient.class);
+		Doctor doctor = restTemplate.getForObject("http://localhost:8082/doctor"+cons.getDoctor(), Doctor.class);
+		return Optional.of(dao.save(cons));
+	}
+
+	@Override
+	public Optional<Consultation> getConsultation(int id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<Consultation> getAllConsultation() {
+		return dao.findAll();
+	}
+}

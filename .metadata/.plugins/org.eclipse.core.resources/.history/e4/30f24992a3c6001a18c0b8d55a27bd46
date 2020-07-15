@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: consultation-service
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - refresh

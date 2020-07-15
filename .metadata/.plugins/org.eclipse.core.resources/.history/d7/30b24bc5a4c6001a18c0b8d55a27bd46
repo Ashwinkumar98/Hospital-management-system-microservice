@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: diagnosis-service
+    
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - refresh

@@ -1,0 +1,59 @@
+package io.microservice.constultation.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import io.microservice.constultation.dto.ConsultationDto;
+import io.microservice.constultation.model.Consultation;
+import io.microservice.constultation.model.Diagnosis;
+import io.microservice.constultation.model.Doctor;
+import io.microservice.constultation.model.Patient;
+import io.microservice.constultation.repo.ConsultationDao;
+
+@Service
+public class ConsultationServiceImp implements ConsultationService{
+	
+	@Autowired
+	private ConsultationDao dao;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Override
+	public Optional<Consultation> addConsultation(ConsultationDto cons) {
+		Patient patient = 
+		Doctor doctor = ;
+		Diagnosis diagnosis = 
+		Consultation consultation = new Consultation();
+		consultation.setPatient(patient);
+		consultation.setDoctor(doctor);
+		consultation.setDiagnosis(diagnosis);
+		return Optional.of(dao.save(consultation));
+	}
+	
+	private Patient getpatientDetails() {
+		return restTemplate.getForObject("http://localhost:8081/patient/"+cons.getPatientPhno(), Patient.class);
+	}
+	
+	private Doctor getDoctorDetails() {
+		return restTemplate.getForObject("http://localhost:8082/doctor/"+cons.getDoctorPhno(), Doctor.class);
+	}
+	
+	private Diagnosis getDiagnosisDetails() {
+		return restTemplate.getForObject("http://localhost:8083/diagnosis/"+cons.getDiagnosisId(),Diagnosis.class);;
+	}
+
+	@Override
+	public Optional<Consultation> getConsultation(int id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<Consultation> getAllConsultation() {
+		return dao.findAll();
+	}
+}

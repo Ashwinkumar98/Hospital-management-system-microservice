@@ -1,0 +1,8 @@
+package io.microservice.diagnosis.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class DiagnosisServiceImp implements DiagnosisService{
+
+}

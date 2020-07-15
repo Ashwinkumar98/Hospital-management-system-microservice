@@ -1,0 +1,20 @@
+package io.microservice.constultation.dto;
+
+import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ConsultationDto implements Serializable {
+	private static final long serialVersionUID = 6784467401439494420L;
+	@NotNull(message = "patientPhno is required")
+	private String patientPhno;
+	@NotNull(message = "doctorPhno is required")
+	private String doctorPhno;
+	@NotNull(message = "diagnosisId is required")
+	private int diagnosisId;
+}

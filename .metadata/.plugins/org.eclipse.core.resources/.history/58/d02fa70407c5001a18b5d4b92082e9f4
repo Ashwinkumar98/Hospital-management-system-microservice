@@ -1,0 +1,5 @@
+package io.microservice.constultation.service;
+
+public class ConsultationServiceImp {
+
+}

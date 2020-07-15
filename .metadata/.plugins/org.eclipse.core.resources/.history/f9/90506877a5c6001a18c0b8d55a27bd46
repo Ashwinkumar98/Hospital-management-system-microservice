@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: consultation-service
+  cache:
+    cache-names:
+    - patientCache
+    - doctorCache
+    - diagnosisCache
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - refresh
+        - hystrix.stream
+        
+info:
+  app:
+    name: consultation service
+    description: This service handles all doctor consultation information
+    version: 1.0
+    java:
+      version: 1.9
+    spring:
+      cloud:
+        version: Hoxton.SR6

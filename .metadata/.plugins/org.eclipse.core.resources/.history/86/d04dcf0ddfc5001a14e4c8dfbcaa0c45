@@ -1,0 +1,40 @@
+package io.microservice.constultation;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
+
+@SpringBootApplication
+@EnableEurekaClient
+@EnableCircuitBreaker
+@EnableHystrix
+@EnableCaching
+public class ConstultationServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ConstultationServiceApplication.class, args);
+	}
+	
+	@LoadBalanced
+	@Bean
+	public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	public ClientHttpRequestFactory clientHttpRequestFactory() {
+	    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+	    factory.setReadTimeout(5000);
+	    factory.setConnectTimeout(5000);
+	    return factory;
+	}
+
+}

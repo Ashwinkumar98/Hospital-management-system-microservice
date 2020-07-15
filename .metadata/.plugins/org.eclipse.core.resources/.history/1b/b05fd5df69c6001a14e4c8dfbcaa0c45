@@ -1,0 +1,7 @@
+package io.microservice.constultation.config;
+
+import org.ehcache.event.CacheEventListener;
+
+public class CacheLogger implements CacheEventListener<Object,Object> {
+
+}

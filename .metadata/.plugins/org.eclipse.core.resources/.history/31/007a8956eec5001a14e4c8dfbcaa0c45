@@ -1,0 +1,19 @@
+package io.microservice.two;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Controller {
+	
+	private String s[];
+	public Controller() {
+		s = new String[] {};
+	}
+	
+	@GetMapping("/two")
+	public List<String> getData(){
+		return s;
+	}
+}

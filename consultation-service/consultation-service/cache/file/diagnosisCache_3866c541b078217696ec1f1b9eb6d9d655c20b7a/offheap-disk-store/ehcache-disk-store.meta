@@ -1,0 +1,4 @@
+#Key and value types
+#Tue Jul 14 13:57:50 IST 2020
+keyType=java.lang.Long
+valueType=io.microservice.constultation.model.Diagnosis

@@ -1,0 +1,64 @@
+package io.microservice.constultation.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.microservice.constultation.dto.ConsultationDto;
+import io.microservice.constultation.model.Consultation;
+import io.microservice.constultation.model.Diagnosis;
+import io.microservice.constultation.model.Doctor;
+import io.microservice.constultation.model.Patient;
+import io.microservice.constultation.repo.ConsultationDao;
+
+@Service
+public class ConsultationServiceImp implements ConsultationService{
+	
+	@Autowired
+	private ConsultationDao dao;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Override
+	public Optional<Consultation> addConsultation(ConsultationDto cons) {
+		Consultation consultation = new Consultation();
+		consultation.setPatient(getpatientDetails(cons.getPatientPhno()));
+		consultation.setDoctor(getDoctorDetails(cons.getDoctorPhno()));
+		consultation.setDiagnosis(getDiagnosisDetails(cons.getDiagnosisId()));
+		return Optional.of(dao.save(consultation));
+	}
+	
+//	@HystrixCommand(fallbackMethod = "patientServiceFallback")
+//	@Cacheable(value = "patientCache", key="#id")
+	private Patient getpatientDetails(String phno) {
+		return restTemplate.getForObject("http://PATIENT-SERVICE/patient/"+phno, Patient.class);
+	}
+	
+//	@HystrixCommand(fallbackMethod = "doctorServiceFallback")
+//	@Cacheable(value = "doctorCache", key="#id")
+	private Doctor getDoctorDetails(String phno) {
+		return restTemplate.getForObject("http://DOCTOR-SERVICE/doctor/"+phno, Doctor.class);
+	}
+	
+//	@HystrixCommand(fallbackMethod = "diagnosisServiceFallback")
+//	@Cacheable(value = "diagnosisCache", key="#id")
+	private Diagnosis getDiagnosisDetails(int id) {
+		return restTemplate.getForObject("http://DIAGNOSIS-SERVICE/diagnosis/"+id,Diagnosis.class);
+	}
+	
+
+	@Override
+	public Optional<Consultation> getConsultation(int id) {
+		return dao.findById(id);
+	}
+
+	@Override
+	public List<Consultation> getAllConsultation() {
+		return dao.findAll();
+	}
+}

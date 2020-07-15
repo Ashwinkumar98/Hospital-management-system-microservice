@@ -1,0 +1,25 @@
+package io.microservice.one;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+@Service
+public class TwoService {
+	
+	@Autowired
+	private RestTemplate template;
+	
+	@HystrixCommand(fallbackMethod = "fallbackmethod")
+	public String[] getData(){
+		return template.getForObject("http://service-two/two", String[].class);
+	}
+	
+	public String[] fallbackmethod() {
+		return new String[] {"dummy"};
+	}
+}
