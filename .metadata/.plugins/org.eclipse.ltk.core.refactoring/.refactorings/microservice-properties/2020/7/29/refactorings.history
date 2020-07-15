@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;microservice-properties/doctor-service&apos; to &apos;doctor-service.yml&apos;" description="Rename resource &apos;doctor-service&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="doctor-service" name="doctor-service.yml" stamp="1594821526303" updateReferences="true"/>
-</session>

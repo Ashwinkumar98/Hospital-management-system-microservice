@@ -1,8 +1,0 @@
-package io.microservice.constultation.client;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class DiagnosisServiceClient {
-	
-}

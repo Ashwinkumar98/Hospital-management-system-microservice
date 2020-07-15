@@ -1,5 +1,0 @@
-package io.microservice.doctor.model;
-
-public class Address {
-
-}

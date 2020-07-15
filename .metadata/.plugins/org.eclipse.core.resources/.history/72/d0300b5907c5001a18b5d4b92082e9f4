@@ -1,8 +1,0 @@
-package io.microservice.constultation.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class ConsultationServiceImp {
-
-}

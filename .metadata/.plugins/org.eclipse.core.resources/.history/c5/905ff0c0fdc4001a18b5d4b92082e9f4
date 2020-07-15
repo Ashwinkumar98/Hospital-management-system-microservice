@@ -1,5 +1,0 @@
-package io.microservice.doctor.repo;
-
-public class DoctorRepo {
-
-}
