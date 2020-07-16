@@ -10,4 +10,5 @@ public interface DoctorService {
 	Optional<Doctor> addDoctor(Doctor doctor);
 	Optional<Doctor> getDoctor(String phno);
 	List<Doctor> getAllDoctors();
+	Optional<Doctor> updateDoctor(int id,Doctor doctor);
 }

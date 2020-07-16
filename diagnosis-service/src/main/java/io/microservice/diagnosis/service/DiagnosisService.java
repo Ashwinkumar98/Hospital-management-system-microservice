@@ -10,4 +10,5 @@ public interface DiagnosisService {
 	Optional<Diagnosis> addDiagnosis(Diagnosis diagnosis);
 	Optional<Diagnosis> getDiagnosis(int id);
 	List<Diagnosis> getAllDiagnosis();
+	Optional<Diagnosis> updateDiagnosis(int id,Diagnosis diagnosis);
 }

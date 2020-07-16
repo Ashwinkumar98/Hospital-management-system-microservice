@@ -31,4 +31,13 @@ public class PatientServiceImp implements PatientService{
 		return dao.findAll();
 	}
 
+	@Override
+	public Optional<Patient> updatePatient(int id,Patient patient) {
+		if(dao.existsById(id)) {
+			patient.setId(id);
+			return Optional.of(dao.save(patient));
+		}
+		return Optional.empty();
+	}
+
 }

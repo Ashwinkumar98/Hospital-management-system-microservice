@@ -31,4 +31,13 @@ public class DiagnosisServiceImp implements DiagnosisService{
 	public List<Diagnosis> getAllDiagnosis() {
 		return dao.findAll();
 	}
+
+	@Override
+	public Optional<Diagnosis> updateDiagnosis(int id, Diagnosis diagnosis) {
+		if(dao.existsById(id)) {
+			diagnosis.setId(id);
+			return Optional.of(dao.save(diagnosis));
+		}
+		return Optional.empty();
+	}
 }

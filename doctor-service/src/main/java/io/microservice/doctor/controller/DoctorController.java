@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,4 +47,12 @@ public class DoctorController {
 	public ResponseEntity<List<Doctor>> getAllPatient(){
 		return new ResponseEntity<List<Doctor>>(service.getAllDoctors(), HttpStatus.OK);
 	} 
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Doctor> updateDoctor(@PathVariable(name = "id",required = true) int id,@RequestBody @Valid Doctor doctor){
+		return new ResponseEntity<Doctor>(
+				service.updateDoctor(id, doctor)
+				.orElseThrow(()->new ResourceNotFoundException("doctor not exists")),
+				HttpStatus.OK);
+	}
 }

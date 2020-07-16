@@ -9,4 +9,5 @@ public interface PatientService {
 	Optional<Patient> addPatient(Patient patient);
 	Optional<Patient> getPatient(String phno);
 	List<Patient> getAllPatient();
+	Optional<Patient> updatePatient(int id,Patient patient);
 }
