@@ -30,7 +30,7 @@ public class DiagnosisServiceClient {
 	})
 	@CachePut(value = "diagnosisCache",key = "#id")
 	public Optional<Diagnosis> getDiagnosisDetails(int id) {
-		return Optional.of(restTemplate.getForObject("http://DIAGNOSIS-SERVICE/diagnosis/"+id,Diagnosis.class));
+		return Optional.of(restTemplate.getForObject("http://ZUUL-API-GATEWAY-SERVER/api/diagnosis/"+id,Diagnosis.class));
 	}
 	
 

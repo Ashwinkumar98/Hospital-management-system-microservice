@@ -28,7 +28,7 @@ public class DoctorServiceClient {
 	})
 	@CachePut(value = "doctorCache" ,key = "#phno")
 	public Optional<Doctor> getDoctorDetalis(String phno) {
-		return Optional.of(restTemplate.getForObject("http://DOCTOR-SERVICE/doctor/"+phno, Doctor.class));
+		return Optional.of(restTemplate.getForObject("http://ZUUL-API-GATEWAY-SERVER/api/doctor/"+phno, Doctor.class));
 	}
 	
 	public Optional<Doctor> getFallbackDoctor(String phno) {
